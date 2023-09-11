@@ -1,0 +1,23 @@
+.button-container {
+  display: flex;
+  justify-content: space-between; /* this will add space between the buttons */
+  margin-bottom: 20px; /* add some space between buttons and the rest of the content */
+}
+
+.start-tour-button {
+  order: 2; /* move the start tour button to the right */
+}
+
+.new-asset-button {
+  border-radius: 50%; /* make the button round */
+  background-color: #880e4f; /* the pink color from the theme */
+  order: 1; /* move the new asset button to the left */
+}
+
+.animated-button {
+  transition: transform 0.3s ease;
+}
+
+.animated-button:hover {
+  transform: scale(1.1);
+}

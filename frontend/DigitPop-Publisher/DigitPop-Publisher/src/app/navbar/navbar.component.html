@@ -1,0 +1,19 @@
+<mat-toolbar>
+  <span>DigitPop</span>
+  <span class="spacer"></span>
+  <ng-container *ngIf="isAuthenticated; else notLoggedIn">
+    <button mat-icon-button [matMenuTriggerFor]="menu">
+      <mat-icon>account_circle</mat-icon>
+    </button>
+    <mat-menu #menu="matMenu">
+      <button mat-menu-item routerLink="/account">Account</button>
+      <button mat-menu-item (click)="logout()">Logout</button>
+    </mat-menu>
+  </ng-container>
+  <ng-template #notLoggedIn>
+    <button mat-button routerLink="/register">Sign Up</button>
+    <button mat-button routerLink="/signin">Sign In</button>
+  </ng-template>
+</mat-toolbar>
+
+

@@ -1,0 +1,15 @@
+<div class="main-container">
+  <app-navbar></app-navbar>
+
+  <div class="content mat-app-background">
+    <!-- Spinner overlay -->
+    <div *ngIf="spinnerService.loading$ | async" class="loading-overlay">
+      <mat-spinner color="primary"></mat-spinner>
+    </div>
+
+    <router-outlet></router-outlet>
+  </div>
+
+  <app-footer></app-footer>
+</div>
+

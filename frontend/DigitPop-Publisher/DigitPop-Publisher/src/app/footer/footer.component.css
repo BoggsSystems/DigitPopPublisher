@@ -1,0 +1,19 @@
+
+.footer .small-text {
+  font-size: 50%;
+}
+
+.footer .spacer {
+  margin-right: 10px;
+}
+
+.footer .container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+
+.spacer {
+  flex: 1 1 auto;
+}

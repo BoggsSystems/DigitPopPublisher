@@ -1,0 +1,114 @@
+<mat-horizontal-stepper [linear]="isLinear" #stepper>
+
+  <!-- Step 1 -->
+  <mat-step [stepControl]="firstFormGroup">
+    <form [formGroup]="firstFormGroup">
+      <ng-template matStepLabel>Personal Information</ng-template>
+
+      <mat-form-field>
+        <mat-label>First Name</mat-label>
+        <input matInput formControlName="firstName" required>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Last Name</mat-label>
+        <input matInput formControlName="lastName" required>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Email</mat-label>
+        <input matInput formControlName="email" required>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Phone Number</mat-label>
+        <input matInput formControlName="phone" required>
+      </mat-form-field>
+
+      <div>
+        <button id="step1Next" mat-button matStepperNext>Next</button>
+      </div>
+    </form>
+  </mat-step>
+
+  <!-- Step 2 -->
+  <mat-step [stepControl]="secondFormGroup">
+    <form [formGroup]="secondFormGroup">
+      <ng-template matStepLabel>Company Information</ng-template>
+
+      <mat-form-field>
+        <mat-label>Company Name</mat-label>
+        <input matInput formControlName="companyName" required>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Company Address</mat-label>
+        <input matInput formControlName="companyAddress" required>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Company Website</mat-label>
+        <input matInput formControlName="companyWebsite" required>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Company Type</mat-label>
+        <mat-select formControlName="companyType" required>
+          <mat-option value="individual">Individual</mat-option>
+          <mat-option value="corporation">Corporation</mat-option>
+          <!-- More options -->
+        </mat-select>
+      </mat-form-field>
+
+      <div>
+        <button mat-button matStepperPrevious>Back</button>
+        <button id="step2Next" mat-button matStepperNext>Next</button>
+      </div>
+    </form>
+  </mat-step>
+
+  <!-- Step 3 -->
+  <mat-step [stepControl]="thirdFormGroup">
+    <form [formGroup]="thirdFormGroup">
+      <ng-template matStepLabel>Account Details</ng-template>
+
+      <mat-form-field>
+        <mat-label>Username</mat-label>
+        <input matInput formControlName="username" required>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Password</mat-label>
+        <input matInput type="password" formControlName="password" required>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Confirm Password</mat-label>
+        <input matInput type="password" formControlName="confirmPassword" required>
+      </mat-form-field>
+
+      <div>
+        <button mat-button matStepperPrevious>Back</button>
+        <button id="step3Next" mat-button matStepperNext>Next</button>
+      </div>
+    </form>
+  </mat-step>
+
+  <!-- Confirmation step -->
+  <mat-step>
+    <ng-template matStepLabel>Confirm</ng-template>
+    <p>You are now ready to complete your sign up.</p>
+    <div>
+      <button mat-button matStepperPrevious>Back</button>
+      <button mat-button (click)="stepper.reset()">Reset</button>
+      <button id="register" mat-button (click)="register()">Confirm and Register</button> <!-- Call to register method -->
+    </div>
+  </mat-step>
+
+  <!-- Confirmation Complete step -->
+<mat-step [completed]="registrationComplete">
+  <ng-template matStepLabel>Registration Complete</ng-template>
+  <p>Your registration has been successfully submitted. We will review your application and contact you soon.</p>
+</mat-step>
+</mat-horizontal-stepper>
+

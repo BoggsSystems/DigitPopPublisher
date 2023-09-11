@@ -1,0 +1,163 @@
+<div class="dashboard mat-app-background">
+  <div class="button-container">
+    <button
+      class="start-tour-button"
+      mat-stroked-button
+      color="primary"
+      (click)="startTour()"
+    >
+      Start Tour
+    </button>
+
+    <div class="create-asset">
+      <button
+        mat-fab
+        color="accent"
+        matTooltip="Create New Asset"
+        class="animated-button"
+        (click)="openAssetCreationDialog()"
+      >
+        <mat-icon>add</mat-icon>
+      </button>
+    </div>
+  </div>
+
+  <div
+    class="asset-table mat-elevation-z8"
+    *ngIf="!loading && assets && assets.data.length > 0; else emptyState"
+  >
+    <table mat-table [dataSource]="assets">
+      <!-- Name column -->
+      <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef>Name</th>
+        <td mat-cell *matCellDef="let element">{{ element.name }}</td>
+      </ng-container>
+
+      <!-- Description column -->
+      <ng-container matColumnDef="description">
+        <th mat-header-cell *matHeaderCellDef>Description</th>
+        <td mat-cell *matCellDef="let element">{{ element.description }}</td>
+      </ng-container>
+
+      <!-- Asset Type column -->
+      <ng-container matColumnDef="assetType">
+        <th mat-header-cell *matHeaderCellDef>Asset Type</th>
+        <td mat-cell *matCellDef="let element">
+          {{ element.assetType.assetType }}
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="prices">
+        <th mat-header-cell *matHeaderCellDef>Prices</th>
+        <td mat-cell *matCellDef="let element">
+          <ng-container *ngFor="let price of element.prices">
+            <div>
+              {{ price.accessType }}:
+              {{ price.price | currency : "USD" : true : "1.2-2" }}
+            </div>
+          </ng-container>
+        </td>
+      </ng-container>
+
+      <!-- All Time Sales column -->
+      <ng-container matColumnDef="allTimeSales">
+        <th mat-header-cell *matHeaderCellDef>All Time Sales</th>
+        <td mat-cell *matCellDef="let element">{{ element.allTimeSales }}</td>
+      </ng-container>
+
+      <!-- Today Sales column -->
+      <ng-container matColumnDef="todaySales">
+        <th mat-header-cell *matHeaderCellDef>Today Sales</th>
+        <td mat-cell *matCellDef="let element">{{ element.todaySales }}</td>
+      </ng-container>
+
+      <!-- Week Sales column -->
+      <ng-container matColumnDef="weekSales">
+        <th mat-header-cell *matHeaderCellDef>Week Sales</th>
+        <td mat-cell *matCellDef="let element">{{ element.weekSales }}</td>
+      </ng-container>
+
+      <!-- Month Sales column -->
+      <ng-container matColumnDef="monthSales">
+        <th mat-header-cell *matHeaderCellDef>Month Sales</th>
+        <td mat-cell *matCellDef="let element">{{ element.monthSales }}</td>
+      </ng-container>
+
+      <!-- All Time Revenue column -->
+      <ng-container matColumnDef="allTimeRevenue">
+        <th mat-header-cell *matHeaderCellDef>All Time Revenue</th>
+        <td mat-cell *matCellDef="let element">{{ element.allTimeRevenue }}</td>
+      </ng-container>
+
+      <!-- Today Revenue column -->
+      <ng-container matColumnDef="todayRevenue">
+        <th mat-header-cell *matHeaderCellDef>Today Revenue</th>
+        <td mat-cell *matCellDef="let element">{{ element.todayRevenue }}</td>
+      </ng-container>
+
+      <!-- Week Revenue column -->
+      <ng-container matColumnDef="weekRevenue">
+        <th mat-header-cell *matHeaderCellDef>Week Revenue</th>
+        <td mat-cell *matCellDef="let element">{{ element.weekRevenue }}</td>
+      </ng-container>
+
+      <!-- Month Revenue column -->
+      <ng-container matColumnDef="monthRevenue">
+        <th mat-header-cell *matHeaderCellDef>Month Revenue</th>
+        <td mat-cell *matCellDef="let element">{{ element.monthRevenue }}</td>
+      </ng-container>
+
+      <!-- Actions column -->
+      <ng-container matColumnDef="actions">
+        <th mat-header-cell *matHeaderCellDef>Actions</th>
+        <td mat-cell *matCellDef="let element">
+          <button
+            mat-icon-button
+            color="primary"
+            (click)="editAsset(element.id)"
+          >
+            <mat-icon>edit</mat-icon>
+          </button>
+          <button
+            mat-icon-button
+            color="warn"
+            (click)="deleteAsset(element.id)"
+          >
+            <mat-icon>delete</mat-icon>
+          </button>
+          <button
+            mat-icon-button
+            color="accent"
+            (click)="copyEmbedCodeToClipboard(element.id)"
+          >
+            <mat-icon>content_copy</mat-icon>
+          </button>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+    </table>
+  </div>
+
+  <ng-template #emptyState>
+    <div
+      class="empty-state mat-typography"
+      *ngIf="
+        !loading && serverResponded && (!assets || assets.data.length === 0)
+      "
+    >
+      <h2>You don't have any assets yet!</h2>
+      <p>
+        Once you start creating and publishing assets, they will appear here.
+      </p>
+      <button
+        mat-raised-button
+        color="primary"
+        (click)="openAssetCreationDialog()"
+      >
+        Create Your First Asset
+      </button>
+    </div>
+  </ng-template>
+</div>

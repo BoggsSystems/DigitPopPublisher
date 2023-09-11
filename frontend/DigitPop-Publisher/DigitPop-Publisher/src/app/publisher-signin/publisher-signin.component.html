@@ -1,0 +1,8 @@
+<div>
+  <input type="text" #email placeholder="Email">
+  <input type="password" #password placeholder="Password">
+  <button (click)="signIn(email.value, password.value)">Sign In</button>
+  <div id="errorMessageElement" style="color: red;"></div> <!-- Error message display -->
+</div>
+
+

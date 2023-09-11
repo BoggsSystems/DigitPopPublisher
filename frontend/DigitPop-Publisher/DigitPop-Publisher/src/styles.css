@@ -1,0 +1,26 @@
+@import '~@angular/material/prebuilt-themes/pink-bluegrey.css';
+
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+app-register {
+  height: 100%;
+}
+
+/* in styles.css or styles.scss */
+mat-snack-bar-container.snackbar-success {
+  background-color: #4CAF50; /* green */
+  color: white;
+}
+
+mat-snack-bar-container.snackbar-error {
+  background-color: #F44336; /* red */
+  color: white;
+}
+
+
+/* in app-stepper.component.css or styles.css */
+/* in app-stepper.component.css or styles.css */
+
+
